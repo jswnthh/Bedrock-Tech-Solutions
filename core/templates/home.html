@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Bedrock Tech Solutions — IT Infrastructure & Support{% endblock %}
+
+{% block content %}
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-art" src="{% static 'images/Vintage Mesa Sun Poster.png' %}"
+      alt="Vintage poster-style mesa beneath a yellow sun">
+    <div class="hero-shade" aria-hidden="true"></div>
+
+    <div class="hero-title-lockup">
+      <h1 id="hero-title">Bedrock</h1>
+      <p><span></span>Tech Solutions<span></span></p>
+    </div>
+
+    <span class="hero-star" aria-hidden="true">✦</span>
+
+    <div class="hero-copy">
+      <h2>Built on<br><em>solid ground.</em></h2>
+      <p>IT infrastructure, engineered for resilience.</p>
+      <a class="hero-cta" href="#work">Explore our solutions <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="hero-capabilities" aria-label="Core capabilities">
+      <a href="#services">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="m16 3 12 7-12 7L4 10Zm-12 13 12 7 12-7M4 22l12 7 12-7" />
+        </svg>
+        <span>Infrastructure<br>solutions</span>
+      </a>
+      <a href="#services">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 3 27 7v8c0 7-4 11-11 14C9 26 5 22 5 15V7Z" />
+        </svg>
+        <span>Managed<br>services</span>
+      </a>
+      <a href="#company">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="8" r="5" />
+          <circle cx="7" cy="23" r="5" />
+          <circle cx="25" cy="23" r="5" />
+          <path d="m13 12-4 7m10-7 4 7M12 23h8" />
+        </svg>
+        <span>IT<br>consulting</span>
+      </a>
+    </div>
+
+    <a class="hero-scroll" href="#services" aria-label="Scroll to services">↓</a>
+  </section>
+
+  <section class="services" id="services" aria-labelledby="services-title">
+    <header class="section-heading">
+      <p class="section-number">01 — Capabilities</p>
+      <h2 id="services-title">From first connection<br>to long-term support.</h2>
+    </header>
+
+    <div class="service-list">
+      <article class="service-row">
+        <p class="service-no">01</p>
+        <h3>Infrastructure</h3>
+        <p>Network, server and workstation systems designed around how your organization operates.</p>
+        <a href="#contact" aria-label="Enquire about infrastructure services">↗</a>
+      </article>
+      <article class="service-row">
+        <p class="service-no">02</p>
+        <h3>Security &amp; Access</h3>
+        <p>Firewalls, managed switching, enterprise Wi-Fi and CCTV with clear access controls.</p>
+        <a href="#contact" aria-label="Enquire about security services">↗</a>
+      </article>
+      <article class="service-row">
+        <p class="service-no">03</p>
+        <h3>Support &amp; Continuity</h3>
+        <p>Server administration, backup, maintenance and responsive IT troubleshooting.</p>
+        <a href="#contact" aria-label="Enquire about support services">↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <header class="section-heading inverse">
+      <p class="section-number">02 — Solutions</p>
+      <h2 id="work-title">Built around<br>your operation.</h2>
+    </header>
+
+    <div class="solution-grid">
+      <article class="solution-card solution-card-large">
+        <div class="solution-image">
+          <img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"
+            alt="Technical work inside a network infrastructure environment">
+          <span class="card-index">S / 01</span>
+        </div>
+        <div class="solution-copy">
+          <p class="eyebrow dark">Business systems</p>
+          <h3>Reliable foundations</h3>
+          <p>From domain control and file sharing to secure office networks, build a stable base for everyday work.</p>
+        </div>
+      </article>
+
+      <article class="solution-card">
+        <div class="solution-image">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+            alt="Network cabling and communication equipment">
+          <span class="card-index">S / 02</span>
+        </div>
+        <div class="solution-copy">
+          <p class="eyebrow dark">Resilience</p>
+          <h3>Prepared for downtime</h3>
+          <p>Backup, recovery and maintenance plans help keep critical systems available.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="company" id="company" aria-labelledby="company-title">
+    <p class="section-number">03 — Approach</p>
+    <div class="company-layout">
+      <h2 id="company-title">The practical<br>part of <em>technology.</em></h2>
+      <div class="company-copy">
+        <p>Good infrastructure is rarely noticed. It is simply ready when your people need it.</p>
+        <p>Bedrock Tech Solutions brings planning, implementation and ongoing support together—so every decision has a clear purpose and every system has a path forward.</p>
+        <a class="button button-dark" href="#contact">Talk to an engineer <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-heading">
+      <p class="section-number">04 — Start a project</p>
+      <h2 id="contact-title">What do you<br>need <em>working?</em></h2>
+    </div>
+
+    <form class="quote-form" action="#" method="post">
+      {% csrf_token %}
+      {% if sent %}
+      <p class="form-success" role="status">Enquiry received. Thank you—we’ll be in touch.</p>
+      {% endif %}
+      <label>
+        <span>Name</span>
+        <input type="text" name="name" autocomplete="name" placeholder="Your name" required>
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
+      </label>
+      <label>
+        <span>What can we help with?</span>
+        <select name="service">
+          <option value="">Select a service</option>
+          <option>Network infrastructure</option>
+          <option>Server &amp; workstation setup</option>
+          <option>Security &amp; CCTV</option>
+          <option>Backup &amp; support</option>
+          <option>Other / unsure</option>
+        </select>
+      </label>
+      <label>
+        <span>Project notes</span>
+        <textarea name="message" rows="3" placeholder="A few details about your requirements"></textarea>
+      </label>
+      <button class="button button-dark" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+    </form>
+  </section>
+</main>
+{% endblock %}

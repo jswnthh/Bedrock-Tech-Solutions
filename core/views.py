@@ -21,4 +21,4 @@ def home(request):
             )
             sent = True
 
-    return render(request, 'core/home.html', {'sent': sent})
+    return render(request, 'home.html', {'sent': sent})

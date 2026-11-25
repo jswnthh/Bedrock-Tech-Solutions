@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Bedrock Tech Solutions designs, installs and supports dependable IT infrastructure.">
+  <title>{% block title %}Bedrock Tech Solutions — IT Infrastructure & Support{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Bedrock Tech Solutions home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Bedrock <small>Tech Solutions</small></span>
+    </a>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span>Menu</span><span class="menu-icon" aria-hidden="true"></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="#work">Solutions</a>
+      <a href="#services">Services</a>
+      <a href="#company">About</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+    </nav>
+  </header>
+
+  {% block content %} {% endblock %}
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>Bedrock
+          <small>Tech Solutions</small></span></a>
+      <p>IT Infrastructure & Solutions</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href="#services">Services</a>
+      <a href="#work">Projects</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-meta">
+      <p>Systems / Support / Continuity</p>
+      <p>© 2026 Bedrock Tech Solutions</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+
+</html>
