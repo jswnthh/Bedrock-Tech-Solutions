@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Bedrock Tech Solutions designs, installs and supports dependable IT infrastructure.">
-  <title>{% block title %}Bedrock Tech Solutions — IT Infrastructure & Support{% endblock %}</title>
+  <title>{% block title %}Bedrock Tech Solutions - IT Infrastructure & Support{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400..700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   {% block extra_head %}{% endblock %}
@@ -32,8 +33,10 @@
       <a href="#services">Services</a>
       <a href="#company">About</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cta" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+      <a class="nav-cta nav-cta-mobile" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
     </nav>
+
+    <a class="nav-cta header-cta" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
   </header>
 
   {% block content %} {% endblock %}
