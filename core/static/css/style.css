@@ -1,6 +1,6 @@
 /* ==========================================================================
    Bedrock Tech Solutions - Analog Industrial design system
-   Palette: Carbon, Paper, Signal Yellow
+   Palette: Carbon, Paper, Signal Yellow, Cobalt
    ========================================================================== */
 
 /* ---------- Design tokens ---------- */
@@ -9,6 +9,8 @@
   --carbon: #171717;
   --paper: #f2f0e8;
   --yellow: #ffd000;
+  --orange: #C45124;
+  --orange-tint: rgba(255, 145, 64, .16);
   --line-light: rgba(242, 240, 232, .28);
   --scrim: rgba(23, 23, 23, .4);
 
@@ -171,7 +173,7 @@ textarea {
   padding: 0 var(--space-4);
   background: var(--carbon);
   color: var(--paper);
-  border: 1px solid var(--line-light);
+  border: 1px solid var(--orange);
   font-weight: 500;
   transition: color var(--t-fast), border-color var(--t-fast);
 }
@@ -265,6 +267,10 @@ textarea {
   background: var(--yellow);
 }
 
+.hero-title-lockup p span:last-child {
+  background: var(--yellow);
+}
+
 .hero-star {
   position: absolute;
   z-index: 3;
@@ -296,6 +302,42 @@ textarea {
   transform: translateX(-50%);
   background: var(--carbon);
   border: 1px solid var(--line-light);
+  border-bottom-color: var(--orange);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-capabilities {
+    animation: wobble-hor-bottom 2s 2s infinite both;
+  }
+}
+
+/* Wobble adapted from Animista (https://animista.net), FreeBSD License. */
+/* The wobble takes 0.8s of each 2s cycle. */
+@keyframes wobble-hor-bottom {
+  0%, 40%, 100% {
+    transform: translateX(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  6% {
+    transform: translateX(calc(-50% - 30px)) rotate(-6deg);
+  }
+
+  12% {
+    transform: translateX(calc(-50% + 15px)) rotate(6deg);
+  }
+
+  18% {
+    transform: translateX(calc(-50% - 15px)) rotate(-3.6deg);
+  }
+
+  24% {
+    transform: translateX(calc(-50% + 9px)) rotate(2.4deg);
+  }
+
+  30% {
+    transform: translateX(calc(-50% - 6px)) rotate(-1.2deg);
+  }
 }
 
 .hero-capabilities a {
@@ -351,6 +393,8 @@ textarea {
 
 .section-number {
   margin: var(--space-2) 0 0;
+  padding-inline-start: var(--space-2);
+  border-inline-start: 3px solid var(--orange);
   color: var(--yellow);
   font: 500 12px var(--mono);
   text-transform: uppercase;
@@ -362,67 +406,13 @@ textarea {
   letter-spacing: -.01em;
 }
 
-/* ---------- Services ---------- */
-.services,
+/* ---------- Section surfaces ---------- */
 .work,
 .company,
 .contact,
 .site-footer {
   background: var(--carbon);
   border-top: 1px solid var(--line-light);
-}
-
-.services {
-  padding: var(--space-9) var(--space-6) 112px;
-}
-
-.service-list {
-  border-bottom: 1px solid var(--line-light);
-}
-
-.service-row {
-  min-height: 180px;
-  display: grid;
-  grid-template-columns: 12% 38% 40% 10%;
-  align-items: center;
-  border-top: 1px solid var(--line-light);
-}
-
-.service-row:first-child {
-  border-top: 0;
-}
-
-.service-no {
-  margin: 0;
-  font: 12px var(--mono);
-}
-
-.service-row h3 {
-  margin: 0;
-  font: 400 clamp(32px, 3.4vw, 48px)/.95 var(--display);
-  letter-spacing: -.01em;
-}
-
-.service-row>p:not(.service-no) {
-  max-width: 420px;
-  margin: 0;
-  line-height: 1.55;
-}
-
-.service-row a {
-  justify-self: end;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--line-light);
-  display: grid;
-  place-items: center;
-  transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
-}
-
-.service-row a:hover {
-  border-color: var(--yellow);
-  color: var(--yellow);
-  transform: translate(4px, -4px);
 }
 
 /* ---------- Solutions ---------- */
@@ -432,66 +422,121 @@ textarea {
 
 .solution-grid {
   display: grid;
-  grid-template-columns: 1.35fr .65fr;
-  gap: var(--space-5);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
   margin-top: var(--space-7);
 }
 
 .solution-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  min-height: 248px;
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  border: 1px solid var(--line-light);
+  border-top-color: var(--yellow);
+  border-radius: var(--space-2);
 }
 
-.solution-image {
-  height: 420px;
-  position: relative;
-  overflow: hidden;
+.solution-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  background: linear-gradient(155deg, var(--orange-tint), transparent 65%);
+  pointer-events: none;
 }
 
-.solution-card-large .solution-image {
-  height: 520px;
+.solution-card:hover::after {
+  opacity: 0;
 }
 
-.solution-image img {
+@media (prefers-reduced-motion: no-preference) {
+  .solution-card::after {
+    animation: bento-tint-in 240ms var(--ease) both;
+  }
+
+  .solution-card:hover::after {
+    animation-name: bento-tint-out;
+  }
+}
+
+@keyframes bento-tint-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bento-tint-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.solution-card-about {
+  grid-row: span 2;
+  justify-content: flex-end;
+}
+
+.solution-card-infrastructure {
+  grid-column: span 2;
+  justify-content: flex-end;
+  min-height: 296px;
+}
+
+.solution-card-infrastructure img,
+.solution-card-infrastructure::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.solution-card-infrastructure img {
+  z-index: -2;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.15);
-  transition: transform 700ms var(--ease);
+  filter: grayscale(1);
 }
 
-.solution-card:hover img {
-  transform: scale(1.025);
+.solution-card-infrastructure::before {
+  content: "";
+  z-index: -1;
+  background: linear-gradient(90deg, var(--carbon) 15%, rgba(23, 23, 23, .68));
 }
 
-.card-index {
-  position: absolute;
-  left: var(--space-4);
-  bottom: var(--space-4);
-  background: var(--carbon);
-  color: var(--yellow);
-  padding: var(--space-2) 10px;
-  font: 500 12px var(--mono);
-}
-
-.solution-copy {
-  border-top: 1px solid var(--line-light);
-  margin-top: var(--space-4);
-  padding-top: var(--space-4);
-  display: grid;
-  grid-template-columns: 28% 32% 40%;
-  align-items: start;
-}
-
-.solution-copy h3 {
+.solution-card h3 {
   margin: 0;
-  font: 400 clamp(28px, 2.6vw, 36px)/.95 var(--display);
-  letter-spacing: -.01em;
+  font: 400 clamp(28px, 3vw, 44px)/1 var(--display);
 }
 
-.solution-copy>p:last-child {
-  margin: 0;
+.solution-card-about h3 {
+  font-size: clamp(44px, 5.5vw, 80px);
+}
+
+.solution-card p {
+  max-width: 34ch;
+  margin: var(--space-3) 0 var(--space-4);
   line-height: 1.5;
-  color: rgba(242, 240, 232, .8);
+}
+
+.solution-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  margin-top: auto;
+  font-weight: 500;
+}
+
+.solution-card-about a,
+.solution-card-infrastructure a {
+  margin-top: 0;
+}
+
+.solution-card a span,
+.solution-card a:hover {
+  color: var(--yellow);
 }
 
 /* ---------- Company ---------- */
@@ -632,11 +677,17 @@ textarea {
 
 .quote-form label:focus-within {
   border-bottom-color: var(--yellow);
+  background: var(--orange-tint);
 }
 
 .quote-form .button {
   width: 100%;
   margin-top: var(--space-4);
+  background: var(--orange);
+}
+
+.quote-form .button:hover {
+  color: var(--paper);
 }
 
 .form-success {
@@ -653,6 +704,7 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: end;
   padding: var(--space-7) var(--space-6) var(--space-6);
+  border-top-color: var(--orange);
 }
 
 .brand-footer {
@@ -781,17 +833,13 @@ textarea {
     grid-template-columns: 22% 78%;
   }
 
-  .service-row {
-    grid-template-columns: 10% 34% 46% 10%;
-  }
-
   .solution-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .solution-copy {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+  .solution-card-about,
+  .solution-card-infrastructure {
+    grid-area: auto;
   }
 
   .company-layout {
@@ -839,7 +887,6 @@ textarea {
     display: none;
   }
 
-  .services,
   .work,
   .company {
     padding: var(--space-8) var(--space-4) 72px;
@@ -859,39 +906,16 @@ textarea {
     margin: 0;
   }
 
-  .service-row {
-    min-height: 0;
-    grid-template-columns: 38px 1fr 48px;
-    gap: var(--space-2);
-    padding: var(--space-5) 0;
-  }
-
-  .service-row h3 {
-    font-size: 30px;
-  }
-
-  .service-row>p:not(.service-no) {
-    grid-column: 2 / 4;
-    margin-top: var(--space-2);
-  }
-
-  .service-row a {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
   .solution-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-7);
   }
 
-  .solution-card-large .solution-image,
-  .solution-image {
-    height: 280px;
+  .solution-card {
+    min-height: 0;
   }
 
-  .solution-copy {
-    margin-top: var(--space-3);
+  .solution-card-infrastructure {
+    min-height: 240px;
   }
 
   .company-layout {

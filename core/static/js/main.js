@@ -14,7 +14,7 @@ navigation?.querySelectorAll('a').forEach((link) => {
   });
 });
 
-const revealTargets = document.querySelectorAll('.section-heading, .service-row, .solution-card, .company-layout');
+const revealTargets = document.querySelectorAll('.section-heading, .solution-card, .company-layout');
 
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   revealTargets.forEach((element) => element.classList.add('reveal-ready'));
